@@ -6,10 +6,13 @@ public class Player {
 
     private char symbol;
 
-    public Player(String name, int id, char symbol) {
+    private boolean turn;
+
+    public Player(String name, int id, char symbol, boolean turn) {
         this.name = name;
         this.id = id;
         this.symbol = symbol;
+        this.turn = turn;
     }
 
     public String getName() {
@@ -22,5 +25,9 @@ public class Player {
 
     public char getSymbol() {
         return symbol;
+    }
+
+    public boolean toggleTurn(boolean turn) {
+        return !turn;
     }
 }
