@@ -1,5 +1,3 @@
-import com.sun.swing.internal.plaf.synth.resources.synth_pt_BR;
-
 public class Field {
 
     private static final int MIN_FIELD_SIZE = 1;
