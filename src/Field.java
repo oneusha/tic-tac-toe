@@ -16,6 +16,7 @@ public class Field {
         if ((fieldSize > MIN_FIELD_SIZE) && (fieldSize < MAX_FIELD_SIZE)) {
             this.fieldSize = fieldSize;
         } else {
+            System.out.println("Exceeded the permissible limit");
             this.fieldSize = DEFAULT_FIELD_SIZE;
         }
         field = new char[fieldSize][fieldSize];
@@ -51,9 +52,7 @@ public class Field {
         System.out.print("[" + field[i][j] + "]");
     }
 
-    public void drowSymbol(Player player, int i, int j) {
-        System.out.println(player.getName() + ":");
+    public void putSymbol(Player player, int i, int j) {
         field[i][j] = player.getSymbol();
-        showField();
     }
 }
