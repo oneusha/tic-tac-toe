@@ -6,6 +6,8 @@ public class Game {
 
     private Scanner scan = new Scanner(System.in);
 
+    private boolean gameOver = false;
+
     public void startGame() {
 
         Field field = createField();
@@ -15,8 +17,9 @@ public class Game {
         do {
             for (int i = 0; i < PLAYER_COUNTER; i++) {
                 doTurn(field,players[i]);
+                gameOver = stopGame(field,players[i]);
             }
-        } while (false);
+        } while (!gameOver);
     }
 
     private Field createField() {
@@ -46,6 +49,17 @@ public class Game {
         int row = scan.nextInt();
         field.putSymbol(player, row - 1, col - 1);
         field.showField();
+    }
+
+    private boolean stopGame(Field field, Player player) {
+        int fieldSize = field.getFieldSize();
+        char symbol = player.getSymbol();
+        for (int i = 0; i < fieldSize; i++) {
+            if (field.getSymbol(i,i) == symbol) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

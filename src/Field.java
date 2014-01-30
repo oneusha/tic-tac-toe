@@ -22,6 +22,10 @@ public class Field {
         field = new char[fieldSize][fieldSize];
     }
 
+    public int getFieldSize() {
+        return fieldSize;
+    }
+
     public void clearField() {
         for (int i = 0; i < fieldSize; i++) {
             clearLine(i);
@@ -54,5 +58,9 @@ public class Field {
 
     public void putSymbol(Player player, int i, int j) {
         field[i][j] = player.getSymbol();
+    }
+
+    public char getSymbol(int i, int j) {
+        return field[i][j];
     }
 }
