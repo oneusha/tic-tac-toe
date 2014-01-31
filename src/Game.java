@@ -8,16 +8,18 @@ public class Game {
 
     private boolean gameOver = false;
 
+    private Field field = createField();
+
+    private Player[] players = createPlayers();
+
     public void startGame() {
-
-        Field field = createField();
-
-        Player[] players = createPlayers();
-
         do {
             for (int i = 0; i < PLAYER_COUNTER; i++) {
-                doTurn(field,players[i]);
-                gameOver = stopGame(field,players[i]);
+                doTurn(players[i]);
+                gameOver = checkGame(players[i]);
+                if (gameOver) {
+                    break;
+                }
             }
         } while (!gameOver);
     }
@@ -41,7 +43,7 @@ public class Game {
         return players;
     }
 
-    private void doTurn(Field field,Player player) {
+    private void doTurn(Player player) {
         System.out.println(player.getName() + "`s turn");
         System.out.println("Please, input a col: ");
         int col = scan.nextInt();
@@ -49,17 +51,16 @@ public class Game {
         int row = scan.nextInt();
         field.putSymbol(player, row - 1, col - 1);
         field.showField();
+        int[] lastTurn = {row,col};
+        player.setLastTurn(lastTurn);
     }
 
-    private boolean stopGame(Field field, Player player) {
-        int fieldSize = field.getFieldSize();
+    private boolean checkGame(Player player) {
         char symbol = player.getSymbol();
-        for (int i = 0; i < fieldSize; i++) {
-            if (field.getSymbol(i,i) == symbol) {
-                return true;
-            }
-        }
-        return false;
+        int row = player.getLastTurn()[0];
+        int col = player.getLastTurn()[1];
+        boolean result = field.checkField(row,col,symbol);
+        return result;
     }
 
 }

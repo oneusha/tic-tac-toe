@@ -63,4 +63,47 @@ public class Field {
     public char getSymbol(int i, int j) {
         return field[i][j];
     }
+
+    public boolean checkField(int row, int col, char symbol) {
+        return checkCol(row, col, symbol) || checkRow(row, col, symbol) || checkDiagonal(row,col,symbol);
+    }
+
+    private boolean checkRow(int row, int col, char symbol) {
+        boolean result = false;
+        for (int i = 1; i < fieldSize; i++) {
+            if (field[row][i] == field[row - 1][i - 1]) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    private boolean checkCol(int row, int col, char symbol) {
+        boolean result = false;
+        for (int i = 1; i < fieldSize; i++) {
+            if (field[i][col] == field[i - 1][col - 1]) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    private boolean checkDiagonal(int row, int col, char symbol) {
+        boolean result = false;
+        for (int i = 1; i < fieldSize; i++) {
+            if (field[row][col] == field[row - 1][col - 1]) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
 }

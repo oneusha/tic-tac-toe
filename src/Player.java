@@ -2,22 +2,25 @@ public class Player {
 
     private String name;
 
-    private final int id;
-
     private char symbol;
+
+    private int[] lastTurn = new int[2];
 
     public Player(String name, int id, char symbol) {
         this.name = name;
-        this.id = id;
         this.symbol = symbol;
+    }
+
+    public void setLastTurn(int[] lastTurn) {
+        this.lastTurn = lastTurn;
+    }
+
+    public int[] getLastTurn() {
+        return lastTurn;
     }
 
     public String getName() {
         return name;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public char getSymbol() {
