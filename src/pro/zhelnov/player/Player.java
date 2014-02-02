@@ -1,3 +1,5 @@
+package pro.zhelnov.player;
+
 public class Player {
 
     private String name;
@@ -6,7 +8,7 @@ public class Player {
 
     private int[] lastTurn = new int[2];
 
-    public Player(String name, int id, char symbol) {
+    public Player(String name, char symbol) {
         this.name = name;
         this.symbol = symbol;
     }

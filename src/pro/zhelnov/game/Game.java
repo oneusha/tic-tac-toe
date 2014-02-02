@@ -1,3 +1,7 @@
+package pro.zhelnov.game;
+
+import pro.zhelnov.player.Player;
+import pro.zhelnov.field.Field;
 import java.util.Scanner;
 
 public class Game {
@@ -38,18 +42,19 @@ public class Game {
             String name = scan.next();
             System.out.println("Choose your symbol (only one character) : ");
             char symbol = scan.next().charAt(0);
-            players[i] = new Player(name,0,symbol);
+            players[i] = new Player(name,symbol);
         }
         return players;
     }
 
     private void doTurn(Player player) {
+        char symbol = player.getSymbol();
         System.out.println(player.getName() + "`s turn");
         System.out.println("Please, input a col: ");
         int col = scan.nextInt();
         System.out.println("Please, input a row: ");
         int row = scan.nextInt();
-        field.putSymbol(player, row - 1, col - 1);
+        field.putSymbol(symbol, row - 1, col - 1);
         field.showField();
         int[] lastTurn = {row,col};
         player.setLastTurn(lastTurn);

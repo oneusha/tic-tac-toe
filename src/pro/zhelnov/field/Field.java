@@ -1,3 +1,5 @@
+package pro.zhelnov.field;
+
 public class Field {
 
     private static final int MIN_FIELD_SIZE = 1;
@@ -56,8 +58,8 @@ public class Field {
         System.out.print("[" + field[i][j] + "]");
     }
 
-    public void putSymbol(Player player, int i, int j) {
-        field[i][j] = player.getSymbol();
+    public void putSymbol(char symbol, int i, int j) {
+        field[i][j] = symbol;
     }
 
     public char getSymbol(int i, int j) {
