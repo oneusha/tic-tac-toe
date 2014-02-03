@@ -1,6 +1,6 @@
 package pro.zhelnov.player;
 
-public class Player {
+public class Player implements IPlayer {
 
     private String name;
 
