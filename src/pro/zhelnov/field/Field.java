@@ -67,13 +67,13 @@ public class Field {
     }
 
     public boolean checkField(int row, int col, char symbol) {
-        return checkCol(row, col, symbol) || checkRow(row, col, symbol) || checkDiagonal(row,col,symbol);
+        return checkCol(col) || checkRow(row) || checkMajorDiagonal() || checkMinorDiagonal();
     }
 
-    private boolean checkRow(int row, int col, char symbol) {
+    private boolean checkRow(int row) {
         boolean result = false;
         for (int i = 1; i < fieldSize; i++) {
-            if (field[row][i] == field[row - 1][i - 1]) {
+            if (field[row][i] == field[row][i - 1]) {
                 result = true;
             } else {
                 result = false;
@@ -83,10 +83,10 @@ public class Field {
         return result;
     }
 
-    private boolean checkCol(int row, int col, char symbol) {
+    private boolean checkCol(int col) {
         boolean result = false;
         for (int i = 1; i < fieldSize; i++) {
-            if (field[i][col] == field[i - 1][col - 1]) {
+            if (field[i][col] == field[i - 1][col]) {
                 result = true;
             } else {
                 result = false;
@@ -96,15 +96,29 @@ public class Field {
         return result;
     }
 
-    private boolean checkDiagonal(int row, int col, char symbol) {
+    private boolean checkMajorDiagonal() {
         boolean result = false;
         for (int i = 1; i < fieldSize; i++) {
-            if (field[row][col] == field[row - 1][col - 1]) {
+            if (field[i - 1][i - 1] == field[i][i] && field[i - 1][i - 1] != EMPTY_CELL_SYMBOL) {
                 result = true;
             } else {
                 result = false;
                 break;
             }
+        }
+        return result;
+    }
+
+    private boolean checkMinorDiagonal() {
+        boolean result = false;
+        for (int i = 1; i < fieldSize; i++) {
+            if (field[fieldSize - i][i - 1] == field[fieldSize - 1 - i][i] && field[fieldSize - 1][i - 1] != EMPTY_CELL_SYMBOL) {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+            //System.out.println((fieldSize - 1) + ":" + (i - 1) + "  " + field[fieldSize - 1][i - 1] + " = " + field[fieldSize - 1 - i][i] + "  " + (fieldSize - 1 - i) + (i - 1) + ":" + i);
         }
         return result;
     }

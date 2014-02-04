@@ -22,10 +22,15 @@ public class Game {
                 doTurn(players[i]);
                 gameOver = checkGame(players[i]);
                 if (gameOver) {
+                    congratulate(players[i].getName());
                     break;
                 }
             }
         } while (!gameOver);
+    }
+
+    private void congratulate(String name) {
+        System.out.println("Congratulation, " + name + ". You win!");
     }
 
     private Field createField() {
@@ -56,7 +61,7 @@ public class Game {
         int row = scan.nextInt();
         field.putSymbol(symbol, row - 1, col - 1);
         field.showField();
-        int[] lastTurn = {row,col};
+        int[] lastTurn = {row - 1,col - 1};
         player.setLastTurn(lastTurn);
     }
 
